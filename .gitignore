@@ -1,0 +1,18 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build
+Debug/
+Release/
+*.obj
+*.pdb
+*.exe
+*.dll
+
+# OS
+.DS_Store
+Thumbs.db
