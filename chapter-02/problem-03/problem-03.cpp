@@ -32,7 +32,7 @@ int main()
 {
 
     // EXPERIMENT 1
-   
+
     /*char digit;
     cout << "Enter a 2-digit number: \n";
     digit = cin.get();
@@ -50,11 +50,11 @@ int main()
     //digit = cin.get();
     //wholeInt += digit - '0';
     //cout << "You entered the Interger " << wholeInt << endl;
-    
+
 
     // EXPERIMENT 2 - finding the char rep of , and endl
     // OUTCOME: The char rep of , is 44 for endl is 10
-    /*cout << "Enter a number ending with a comma" << endl;
+ /*   cout << "Enter a number ending with a comma" << endl;
     char digit;
     while (true) {
         digit = cin.get();
@@ -67,44 +67,165 @@ int main()
     Write a program to read a number character by character and convert it to an integer, using just one char variable and one int variable.The number will have either
      three or four digits.
       */
-    char digit;
-    int value;
-    int position = 1;
-    int threeDigitsSum;
-    int fourDigitsSum;
-    cout << "Enter a 3 or 4 digit number: ";
-    digit = cin.get();
-    threeDigitsSum = (digit - '0') * 100;
-    fourDigitsSum = (digit - '0') * 1000;
-    digit = cin.get();
-    threeDigitsSum += (digit - '0') * 10;
-    fourDigitsSum += (digit - '0') * 100;
-    digit = cin.get();
-    threeDigitsSum += (digit - '0');
-    fourDigitsSum += (digit - '0') * 10;
-    digit = cin.get();
-    if (digit == 10) {
-        cout << "The 3 digit sum is: " << threeDigitsSum << endl;
-    }
-    else {
-        fourDigitsSum += (digit - '0');
-        cout << "The 4 digit sum is: " << fourDigitsSum << endl;
-    }
+      /*char digit;
+      int value;
+      int position = 1;
+      cout << "Enter a 3 or 4 digit number: ";
+      digit = cin.get();
+      value = (digit - '0') * 100;
+      digit = cin.get();
+      value += (digit - '0') * 10;
+      digit = cin.get();
+      value += (digit - '0');
+      digit = cin.get();
+      if (digit == 10) {
+          cout << "The 3 digit sum is: " << value << endl;
+      }
+      else {
+          value = (value * 10) + (digit - '0');
+          digit = cin.get();
+          if (digit == 10) {
+              cout << "The 4 digit sum is: " << value << endl;
+          }
+          else {
+              value = value * 10 + (digit - '0');
 
+              cout << "The 5 digit sum is: " << value << endl;
+          }
+      }*/
 
-    // now lets read the digits until we hit a comma delimiter
-  /*  char digit;
-    int value = 0;
-    cout << "Enter a number ending with a comma" << endl;
-    digit = cin.get();
-    while (digit != 44) {
-        value = (digit - '0') * 10;
+      /*char digit;
+      int value;
+      cout << "Enter your number string: ";
+      digit = cin.get();
+      value = (digit - '0');
+      digit = cin.get();
+
+      if (digit == 10) {
+          cout << "You entered: " << value << endl;
+      }
+      else {
+          while (digit != 44) {
+              value = value * 10 + (digit - '0');
+              digit = cin.get();
+          }
+          cout << "You entered the number: " << value << endl;
+      }*/
+
+        // now lets read the digits until we hit a comma delimiter
+      /*  char digit;
+        int value = 0;
+        cout << "Enter a number ending with a comma" << endl;
         digit = cin.get();
-        value += digit - '0';
+        while (digit != 44) {
+            value = (digit - '0') * 10;
+            digit = cin.get();
+            value += digit - '0';
 
-        cout << "The interger entered is " << value << endl;
+            cout << "The interger entered is " << value << endl;
+        }
+        cout << "The interger entered is " << value << endl;*/
+
+    //cout << "Enter a number 1 -26: ";
+    //int value; 
+    //cin >> value;
+    //char outPutChar;
+    //outPutChar = value + 'a' -1;
+    //cout << "Equivalent symbol: " << outPutChar << endl;
+
+//cout << "Enter a number 1-8: " << endl;
+//int number;
+//cin >> number;
+//char outPutChar;
+//switch (number) {
+//case 1: outPutChar = '!';  break;
+//case 2: outPutChar = '?';  break;
+//case 3: outPutChar = ',';  break;
+//case 4: outPutChar = '.';  break;
+//case 5: outPutChar = ' ';  break;
+//case 6: outPutChar = ';';  break;
+//case 7: outPutChar = '"';  break;
+//case 8: outPutChar = '\'';  break; 
+//}
+//cout << "Eqivslent symbol: " << outPutChar << endl;
+
+   /* char digit;
+    int value;
+    cout << "Enter your number string: ";
+
+    do {
+        digit = cin.get();
+        value = (digit - '0');
+        digit = cin.get();
+
+        if (digit == 10) {
+            cout << "You entered: " << value << endl;
+        }
+        else {
+            while (digit != 44 && digit != 10) {
+                value = value * 10 + (digit - '0');
+                digit = cin.get();
+
+            }
+            cout << "You entered: " << value << endl;
+        }
+    } while (digit != 10);
+*/
+
+char outPut;
+char digit;
+enum modeType {UPPERCASE, LOWERCASE,PUNCTUATION};
+
+cout << "Enter the encoded string:" << endl;
+modeType mode = UPPERCASE;
+do {
+    digit = cin.get();
+    int number = digit - '0';
+    digit = cin.get();
+
+    while ((digit != 10) && (digit != ',')) {
+        number = (number * 10) + digit - '0';
+        digit = cin.get();
     }
-    cout << "The interger entered is " << value << endl;*/
-
-    return 0;
+    switch(mode){
+    case UPPERCASE: 
+        number = number % 27;
+        outPut = number + 'A' - 1;
+        if (number == 0) {
+            mode = LOWERCASE;
+            continue;
+        }
+        break;
+    case LOWERCASE:
+        number = number % 27;
+        outPut = number + 'a' - 1;   
+        if (number == 0) {
+            mode = PUNCTUATION;
+            continue;
+        }
+        break;
+    case PUNCTUATION:
+        number = number % 9;
+        switch (number) {
+        case 1: outPut = '!';  break;
+        case 2: outPut = '?';  break;
+        case 3: outPut = ',';  break;
+        case 4: outPut = '.';  break;
+        case 5: outPut = ' ';  break;
+        case 6: outPut = ';';  break;
+        case 7: outPut = '"';  break;
+        case 8: outPut = '\'';  break; 
 }
+        if (number == 0) {
+            mode = UPPERCASE;
+            continue;
+        }
+
+        break;
+    }
+    cout << outPut;
+
+} while (digit != 10);
+cout << endl;
+        return 0;
+    }
